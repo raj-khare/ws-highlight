@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:grpc-demo}/swift",
+            "name": "Debug SwiftServer (swift)",
+            "program": "${workspaceFolder:grpc-demo}/swift/.build/debug/SwiftServer",
+            "preLaunchTask": "swift: Build Debug SwiftServer (swift)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:grpc-demo}/swift",
+            "name": "Release SwiftServer (swift)",
+            "program": "${workspaceFolder:grpc-demo}/swift/.build/release/SwiftServer",
+            "preLaunchTask": "swift: Build Release SwiftServer (swift)"
+        }
+    ]
+}
