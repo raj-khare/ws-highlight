@@ -19,11 +19,23 @@ class Gateway {
         // Add more services as needed
     }
 
+    private onMessage(event: MessageEvent) {
+        const data = JSON.parse(event.data);
+        console.log(`Response from server:`, data);
+
+        if (data.type === "response" && data.method === "screenshot.take") {
+            const image = new Image();
+            // Prefix the base64 data with proper data URL format
+            image.src = `data:image/png;base64,${data.data}`;
+            document.body.appendChild(image);
+        }
+    }
+
     private connectToServer(service: string, url: string) {
         const ws = new WebSocket(url);
         ws.onopen = () => console.log(`Connected to ${service} service`);
         ws.onerror = (error) => console.error(`${service} connection error:`, error);
-        ws.onmessage = (event) => console.log(`Response from ${service}:`, JSON.parse(event.data));
+        ws.onmessage = this.onMessage;
         this.servers.set(service, ws);
     }
 
